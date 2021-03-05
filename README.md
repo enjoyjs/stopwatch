@@ -1,1 +1,3 @@
 # stopwatch
+
+A stopwatch utility
