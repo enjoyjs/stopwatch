@@ -37,6 +37,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: lib
+          path: lib/
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
@@ -54,6 +55,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: lib
+          path: lib/
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
