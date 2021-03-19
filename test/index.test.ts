@@ -14,7 +14,8 @@ const id = setInterval(() => {
 			sw.start();
 			break;
 		case 9:
-			sw.stop();
+			sw.pause();
+			sw.reset();
 			clearInterval(id);
 			break;
 		default:
