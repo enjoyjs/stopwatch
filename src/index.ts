@@ -1,11 +1,11 @@
 class Stopwatch {
+	startTime: number | null = null;
 	elapsedTime = 0;
-	startTime = 0;
 	pauseTime = 0;
 	isRunning = false;
 
 	start(): this {
-		if (this.elapsedTime === 0) {
+		if (this.startTime === null) {
 			this.startTime = Date.now();
 		}
 
@@ -28,6 +28,7 @@ class Stopwatch {
 
 	reset(): this {
 		if (!this.isRunning) {
+			this.startTime = null;
 			this.elapsedTime = 0;
 			this.pauseTime = 0;
 		}
@@ -36,9 +37,13 @@ class Stopwatch {
 	}
 
 	update(): this {
+		if (this.startTime === null) {
+			return this;
+		}
+
 		if (this.isRunning) {
 			this.elapsedTime = Date.now() - this.startTime - this.pauseTime;
-		} else if (this.elapsedTime > 0) {
+		} else {
 			this.pauseTime = Date.now() - this.startTime - this.elapsedTime;
 		}
 
