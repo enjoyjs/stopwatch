@@ -9,14 +9,19 @@ class Stopwatch {
 			this.startTime = Date.now();
 		}
 
-		this.isRunning = true;
+		if (!this.isRunning) {
+			this.update();
+			this.isRunning = true;
+		}
 
 		return this;
 	}
 
 	pause(): this {
-		this.update();
-		this.isRunning = false;
+		if (this.isRunning) {
+			this.update();
+			this.isRunning = false;
+		}
 
 		return this;
 	}
