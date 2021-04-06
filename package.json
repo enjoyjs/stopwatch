@@ -37,6 +37,14 @@
     "xo": "^0.38.2"
   },
   "xo": {
-    "prettier": true
+    "prettier": true,
+    "overrides": [
+      {
+        "files": "**/*.ts",
+        "rules": {
+          "@typescript-eslint/explicit-function-return-type": "error"
+        }
+      }
+    ]
   }
 }
