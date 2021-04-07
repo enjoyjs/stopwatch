@@ -12,7 +12,7 @@
   "scripts": {
     "prebuild": "node test/cleanup.js",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.esm.json",
-    "test": "ts-node test/index.test.ts",
+    "test": "ts-node test/stopwatch.test.ts",
     "lint": "tsc --noEmit && xo",
     "lint:fix": "tsc --noEmit && xo --fix"
   },
