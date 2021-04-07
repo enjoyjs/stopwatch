@@ -1,53 +1,52 @@
 class Stopwatch {
-	startTime: number | null = null;
-	elapsedTime = 0;
-	pauseTime = 0;
-	isRunning = false;
+	private startTime: number | null = null;
+	private pauseTime: number | null = null;
+	private pauseDuration = 0;
+
+	constructor(private readonly getCurrentTime = Date.now) {}
 
 	start(): this {
 		if (this.startTime === null) {
-			this.startTime = Date.now();
-		}
-
-		if (!this.isRunning) {
-			this.update();
-			this.isRunning = true;
+			this.startTime = this.getCurrentTime();
+		} else if (this.pauseTime !== null) {
+			this.pauseDuration += this.getCurrentTime() - this.pauseTime;
+			this.pauseTime = null;
 		}
 
 		return this;
 	}
 
 	pause(): this {
-		if (this.isRunning) {
-			this.update();
-			this.isRunning = false;
+		if (this.startTime !== null && this.pauseTime === null) {
+			this.pauseTime = this.getCurrentTime();
 		}
 
 		return this;
 	}
 
 	reset(): this {
-		if (!this.isRunning) {
+		if (this.startTime !== null && this.pauseTime !== null) {
 			this.startTime = null;
-			this.elapsedTime = 0;
-			this.pauseTime = 0;
+			this.pauseTime = null;
+			this.pauseDuration = 0;
 		}
 
 		return this;
 	}
 
-	update(): this {
+	isRunning(): boolean {
+		return this.startTime !== null && this.pauseTime === null;
+	}
+
+	getTime(): number {
 		if (this.startTime === null) {
-			return this;
+			return 0;
 		}
 
-		if (this.isRunning) {
-			this.elapsedTime = Date.now() - this.startTime - this.pauseTime;
-		} else {
-			this.pauseTime = Date.now() - this.startTime - this.elapsedTime;
-		}
+		const now =
+			this.pauseTime === null ? this.getCurrentTime() : this.pauseTime;
 
-		return this;
+		return now - this.startTime - this.pauseDuration;
 	}
 }
 
