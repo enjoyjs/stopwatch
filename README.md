@@ -22,6 +22,14 @@ import Stopwatch from '@enjoyjs/stopwatch';
 const stopwatch = new Stopwatch();
 ```
 
+Alternatively, you can use the current high resolution millisecond timestamp:
+
+```ts
+import { performance } from 'perf_hooks';
+
+const stopwatch = new Stopwatch(performance.now);
+```
+
 #### stopwatch.start()
 
 #### stopwatch.pause()
