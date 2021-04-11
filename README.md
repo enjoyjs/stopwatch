@@ -40,6 +40,8 @@ const stopwatch = new Stopwatch(performance.now);
 
 #### stopwatch.getTime()
 
+#### stopwatch.lap()
+
 ## License
 
 This package is licensed under the [MIT License](LICENSE).
