@@ -88,6 +88,7 @@ const lap = (): void => {
 	assert(sw.lap() === 0);
 	mockReturnValue += 900;
 	assert(sw.lap() === 900);
+	assert(sw.getLapTimes().length === 5);
 	mockReturnValue += 1000;
 
 	sw.pause();
@@ -95,6 +96,7 @@ const lap = (): void => {
 	sw.start();
 
 	assert(sw.lap() === 0);
+	assert(sw.getLapTimes().length === 0);
 };
 
 basic();
