@@ -2,14 +2,23 @@ class Stopwatch {
 	private startTime: number | null = null;
 	private pauseTime: number | null = null;
 	private pauseDuration = 0;
+	private lapStartTime: number | null = null;
+	private lapPauseDuration = 0;
+	private readonly lapTimes: number[] = [];
 
 	constructor(private readonly getCurrentTime = Date.now) {}
 
 	start(): this {
 		if (this.startTime === null) {
-			this.startTime = this.getCurrentTime();
+			const now = this.getCurrentTime();
+
+			this.startTime = now;
+			this.lapStartTime = now;
 		} else if (this.pauseTime !== null) {
-			this.pauseDuration += this.getCurrentTime() - this.pauseTime;
+			const pauseDuration = this.getCurrentTime() - this.pauseTime;
+
+			this.pauseDuration += pauseDuration;
+			this.lapPauseDuration += pauseDuration;
 			this.pauseTime = null;
 		}
 
@@ -29,6 +38,9 @@ class Stopwatch {
 			this.startTime = null;
 			this.pauseTime = null;
 			this.pauseDuration = 0;
+			this.lapStartTime = null;
+			this.lapPauseDuration = 0;
+			this.lapTimes.length = 0;
 		}
 
 		return this;
@@ -47,6 +59,29 @@ class Stopwatch {
 			this.pauseTime === null ? this.getCurrentTime() : this.pauseTime;
 
 		return now - this.startTime - this.pauseDuration;
+	}
+
+	lap(): number {
+		if (this.lapStartTime === null) {
+			return 0;
+		}
+
+		const now =
+			this.pauseTime === null ? this.getCurrentTime() : this.pauseTime;
+		const lapTime = now - this.lapStartTime - this.lapPauseDuration;
+
+		if (lapTime > 0) {
+			this.lapTimes.push(lapTime);
+		}
+
+		this.lapStartTime = now;
+		this.lapPauseDuration = 0;
+
+		return lapTime;
+	}
+
+	getLapTimes(): number[] {
+		return Array.from(this.lapTimes);
 	}
 }
 
