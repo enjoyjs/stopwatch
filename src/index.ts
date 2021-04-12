@@ -4,6 +4,7 @@ class Stopwatch {
 	private pauseDuration = 0;
 	private lapStartTime: number | null = null;
 	private lapPauseDuration = 0;
+	private readonly lapTimes: number[] = [];
 
 	constructor(private readonly getCurrentTime = Date.now) {}
 
@@ -39,6 +40,7 @@ class Stopwatch {
 			this.pauseDuration = 0;
 			this.lapStartTime = null;
 			this.lapPauseDuration = 0;
+			this.lapTimes.length = 0;
 		}
 
 		return this;
@@ -68,10 +70,18 @@ class Stopwatch {
 			this.pauseTime === null ? this.getCurrentTime() : this.pauseTime;
 		const lapTime = now - this.lapStartTime - this.lapPauseDuration;
 
+		if (lapTime > 0) {
+			this.lapTimes.push(lapTime);
+		}
+
 		this.lapStartTime = now;
 		this.lapPauseDuration = 0;
 
 		return lapTime;
+	}
+
+	getLapTimes(): number[] {
+		return Array.from(this.lapTimes);
 	}
 }
 
