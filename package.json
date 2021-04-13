@@ -1,6 +1,6 @@
 {
   "name": "@enjoyjs/stopwatch",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A stopwatch utility",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
