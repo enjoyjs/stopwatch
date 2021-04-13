@@ -1,4 +1,4 @@
-class Stopwatch {
+export class Stopwatch {
 	private startTime: number | null = null;
 	private pauseTime: number | null = null;
 	private pauseDuration = 0;

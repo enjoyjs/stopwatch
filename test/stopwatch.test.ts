@@ -1,5 +1,5 @@
 import {strict as assert} from 'assert';
-import Stopwatch from '../src';
+import {Stopwatch} from '../src';
 
 const basic = (): void => {
 	let mockReturnValue = 0;

@@ -11,7 +11,7 @@ npm i @enjoyjs/stopwatch
 Then import this:
 
 ```ts
-import Stopwatch from '@enjoyjs/stopwatch';
+import { Stopwatch } from '@enjoyjs/stopwatch';
 ```
 
 ## API
