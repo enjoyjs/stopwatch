@@ -10,7 +10,7 @@
     "src/"
   ],
   "scripts": {
-    "prebuild": "node test/cleanup.js",
+    "prebuild": "node test/cleanup.cjs",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.esm.json",
     "test": "ts-node test/stopwatch.test.ts",
     "lint": "tsc --noEmit && xo",
@@ -38,6 +38,9 @@
   },
   "xo": {
     "prettier": true,
+    "rules": {
+      "import/extensions": "off"
+    },
     "overrides": [
       {
         "files": "**/*.ts",
