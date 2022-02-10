@@ -1,32 +1,32 @@
 export class Stopwatch {
-	private startTime: number | null = null;
-	private pauseTime: number | null = null;
+	private startTime: number | undefined;
+	private pauseTime: number | undefined;
 	private pauseDuration = 0;
-	private lapStartTime: number | null = null;
+	private lapStartTime: number | undefined;
 	private lapPauseDuration = 0;
 	private readonly lapTimes: number[] = [];
 
 	constructor(private readonly getCurrentTime = Date.now) {}
 
 	start(): this {
-		if (this.startTime === null) {
+		if (this.startTime === undefined) {
 			const now = this.getCurrentTime();
 
 			this.startTime = now;
 			this.lapStartTime = now;
-		} else if (this.pauseTime !== null) {
+		} else if (this.pauseTime !== undefined) {
 			const pauseDuration = this.getCurrentTime() - this.pauseTime;
 
 			this.pauseDuration += pauseDuration;
 			this.lapPauseDuration += pauseDuration;
-			this.pauseTime = null;
+			this.pauseTime = undefined;
 		}
 
 		return this;
 	}
 
 	pause(): this {
-		if (this.startTime !== null && this.pauseTime === null) {
+		if (this.startTime !== undefined && this.pauseTime === undefined) {
 			this.pauseTime = this.getCurrentTime();
 		}
 
@@ -34,11 +34,11 @@ export class Stopwatch {
 	}
 
 	reset(): this {
-		if (this.startTime !== null && this.pauseTime !== null) {
-			this.startTime = null;
-			this.pauseTime = null;
+		if (this.startTime !== undefined && this.pauseTime !== undefined) {
+			this.startTime = undefined;
+			this.pauseTime = undefined;
 			this.pauseDuration = 0;
-			this.lapStartTime = null;
+			this.lapStartTime = undefined;
 			this.lapPauseDuration = 0;
 			this.lapTimes.length = 0;
 		}
@@ -47,27 +47,27 @@ export class Stopwatch {
 	}
 
 	isRunning(): boolean {
-		return this.startTime !== null && this.pauseTime === null;
+		return this.startTime !== undefined && this.pauseTime === undefined;
 	}
 
 	getTime(): number {
-		if (this.startTime === null) {
+		if (this.startTime === undefined) {
 			return 0;
 		}
 
 		const now =
-			this.pauseTime === null ? this.getCurrentTime() : this.pauseTime;
+			this.pauseTime === undefined ? this.getCurrentTime() : this.pauseTime;
 
 		return now - this.startTime - this.pauseDuration;
 	}
 
 	lap(): number {
-		if (this.lapStartTime === null) {
+		if (this.lapStartTime === undefined) {
 			return 0;
 		}
 
 		const now =
-			this.pauseTime === null ? this.getCurrentTime() : this.pauseTime;
+			this.pauseTime === undefined ? this.getCurrentTime() : this.pauseTime;
 		const lapTime = now - this.lapStartTime - this.lapPauseDuration;
 
 		if (lapTime > 0) {
