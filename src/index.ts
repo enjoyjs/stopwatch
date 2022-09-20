@@ -55,8 +55,7 @@ export class Stopwatch {
 			return 0;
 		}
 
-		const now =
-			this.pauseTime === undefined ? this.getCurrentTime() : this.pauseTime;
+		const now = this.pauseTime ?? this.getCurrentTime();
 
 		return now - this.startTime - this.pauseDuration;
 	}
@@ -66,8 +65,7 @@ export class Stopwatch {
 			return 0;
 		}
 
-		const now =
-			this.pauseTime === undefined ? this.getCurrentTime() : this.pauseTime;
+		const now = this.pauseTime ?? this.getCurrentTime();
 		const lapTime = now - this.lapStartTime - this.lapPauseDuration;
 
 		if (lapTime > 0) {
