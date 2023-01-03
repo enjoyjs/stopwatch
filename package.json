@@ -10,7 +10,7 @@
     "src/"
   ],
   "scripts": {
-    "prebuild": "node test/cleanup.cjs",
+    "prebuild": "node build/cleanup.cjs",
     "build": "tsc -p tsconfig.json && tsc -p tsconfig.esm.json",
     "test": "ts-node test/stopwatch.test.ts",
     "lint": "tsc --noEmit && xo",
