@@ -30,7 +30,7 @@
     "url": "https://github.com/enjoyjs/stopwatch/issues"
   },
   "homepage": "https://github.com/enjoyjs/stopwatch#readme",
-  "packageManager": "npm@9.6.4",
+  "packageManager": "npm@9.6.5",
   "devDependencies": {
     "@enjoyjs/tsconfig": "^4.0.0",
     "ts-node": "^10.9.1",
