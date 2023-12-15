@@ -33,7 +33,7 @@
   "packageManager": "npm@9.9.2",
   "devDependencies": {
     "@enjoyjs/tsconfig": "^4.0.0",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "typescript": "^4.9.5",
     "xo": "^0.54.2"
   },
