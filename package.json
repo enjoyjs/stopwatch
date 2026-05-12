@@ -32,7 +32,7 @@
   "homepage": "https://github.com/enjoyjs/stopwatch#readme",
   "packageManager": "npm@9.9.4",
   "devDependencies": {
-    "@enjoyjs/tsconfig": "^4.0.0",
+    "@enjoyjs/tsconfig": "^5.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^4.9.5",
     "xo": "^0.54.2"
